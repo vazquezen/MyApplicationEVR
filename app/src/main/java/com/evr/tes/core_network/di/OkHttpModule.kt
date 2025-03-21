@@ -19,6 +19,9 @@ import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/**
+ * Module that provides the and Retrofit client for the application.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object OkHttpModule {
