@@ -9,6 +9,9 @@ import kotlinx.coroutines.Dispatchers
 import com.evr.tes.core_network.utils.AppDispatcher
 import com.evr.tes.core_network.utils.Dispatcher
 
+/**
+ * Module that provides the dispatchers for the application.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 internal object DispatchersModule {

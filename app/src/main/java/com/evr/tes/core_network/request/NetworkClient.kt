@@ -5,6 +5,9 @@ import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import javax.inject.Inject
 
+/**
+ * Network client that provides the OkHttpClient and Gson instances.
+ */
 class NetworkClient @Inject constructor(
     private val client: OkHttpClient,
     private val gson: Gson

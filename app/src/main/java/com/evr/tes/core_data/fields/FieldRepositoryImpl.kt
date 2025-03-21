@@ -25,6 +25,9 @@ import org.jetbrains.annotations.VisibleForTesting
 import org.json.JSONObject
 import javax.inject.Inject
 
+/**
+ * Implementation of [FieldRepository].
+ */
 @VisibleForTesting
 class FieldRepositoryImpl @Inject constructor(
     private val network: NetworkClient,

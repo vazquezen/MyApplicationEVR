@@ -9,6 +9,9 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
+/**
+ * MainCoroutinesRule is a JUnit TestRule which overrides the main dispatcher
+ */
 class MainCoroutinesRule(
     val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
 ) : TestWatcher() {

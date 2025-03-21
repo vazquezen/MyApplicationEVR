@@ -10,6 +10,9 @@ import java.net.URLEncoder
 import java.util.TreeMap
 
 
+/**
+ * Function that creates a signed request from a request DTO.
+ */
 fun RequestDto.getSignedRequest(): Request {
     val url = getUrl()
     val headers = getHeader()
@@ -25,9 +28,15 @@ fun RequestDto.getSignedRequest(): Request {
         .build()
 }
 
+/**
+ * Function that creates a bodyType for request from a request DTO.
+ */
 private fun RequestDto.sendBody() =
     method == HttpMethods.POST || method == HttpMethods.PUT || method == HttpMethods.DELETE
 
+/**
+ * Function that creates a get URL to request from a request DTO.
+ */
 private fun RequestDto.getUrl(): String {
     val urlBase = "https://test_api.com/"
     var url = "$urlBase$resource$instance$subResource"
@@ -40,6 +49,9 @@ private fun RequestDto.getUrl(): String {
     return url
 }
 
+/**
+ * Function that creates a set headers in request from a request DTO.
+ */
 fun RequestDto.getHeader(): TreeMap<String, String> {
     return TreeMap<String, String>().apply {
         put("appkey", "ONE_KEY")
@@ -53,6 +65,9 @@ fun RequestDto.getHeader(): TreeMap<String, String> {
     }
 }
 
+/**
+ * Function that creates a set params in request from a request DTO.
+ */
 private fun RequestDto.setParams(url: String): String {
     val queryParams = args.toSortedMap().map { (key, value) ->
         "${URLEncoder.encode(key, "UTF-8")}=${URLEncoder.encode(value.toString(), "UTF-8")}"
