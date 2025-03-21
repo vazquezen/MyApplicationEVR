@@ -33,7 +33,7 @@ class MainScreenViewModel @Inject constructor(
     /**
      * Load the fields from the repository
      */
-    private fun loadFields() = viewModelScope.launch {
+    fun loadFields() = viewModelScope.launch {
         _fieldsState.value = FieldsState.Loading
         fieldsRepository.getFields().collect { fieldResult ->
             when (fieldResult) {
@@ -80,6 +80,9 @@ class MainScreenViewModel @Inject constructor(
     }
 }
 
+/**
+ * Sealed class to represent the state of the fields
+ */
 sealed interface FieldsState {
     data object Nonce : FieldsState
     data object Loading : FieldsState
