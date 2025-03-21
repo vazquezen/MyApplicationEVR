@@ -1,5 +1,6 @@
 package com.evr.tes.core_model.fields
 
+import com.evr.tes.core_model.Constants
 import com.google.gson.annotations.SerializedName
 
 
@@ -8,7 +9,7 @@ data class Field(
     @SerializedName("group") val group: String,
     @SerializedName("visible") val visible: Boolean,
     @SerializedName("order") val order: Int,
-    @SerializedName("maxlength") val maxlength: Int?,
+    @SerializedName("maxlength") val maxlength: Int = 0,
     @SerializedName("type") val type: String,
     @SerializedName("newline") val newline: Boolean,
     @SerializedName("hidetitle") val hidetitle: Boolean,
@@ -16,14 +17,14 @@ data class Field(
     @SerializedName("mapper") val mapper: String,
     @SerializedName("clientzone_visible") val clientzoneVisible: Boolean,
     @SerializedName("clientzone_editable") val clientzoneEditable: Boolean,
-    @SerializedName("clientzone_check") val clientzoneCheck: String?,
+    @SerializedName("clientzone_check") val clientzoneCheck: String = Constants.EMPTY,
     @SerializedName("clientzone_required") val clientzoneRequired: Boolean,
     @SerializedName("cl_visible") val clVisible: Boolean,
     @SerializedName("step") val step: Int,
     @SerializedName("auto_approve") val autoApprove: Boolean,
     @SerializedName("condition_type") val conditionType: Int,
     @SerializedName("condition") val condition: List<Int>,
-    @SerializedName("regex") val regex: String?,
+    @SerializedName("regex") val regex: String = Constants.EMPTY,
     @SerializedName("values") val values: Any?,
     @SerializedName("select_values") var valuesList: List<String>
 )

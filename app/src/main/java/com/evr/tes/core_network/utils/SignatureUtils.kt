@@ -35,10 +35,10 @@ private fun RequestDto.sendBody() =
     method == HttpMethods.POST || method == HttpMethods.PUT || method == HttpMethods.DELETE
 
 /**
- * Function that creates a get URL to request from a request DTO.
+ * Function that creates a get URL to request from a request DTO. https://run.mocky.io/v3/5c9df600-1a09-42bb-be2a-49fe391ed7ae
  */
 private fun RequestDto.getUrl(): String {
-    val urlBase = "https://test_api.com/"
+    val urlBase = "https://run.mocky.io/"
     var url = "$urlBase$resource$instance$subResource"
     try {
         url = setParams(url)

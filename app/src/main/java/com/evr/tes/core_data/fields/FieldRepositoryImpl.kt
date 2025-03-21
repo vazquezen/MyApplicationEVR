@@ -35,57 +35,53 @@ class FieldRepositoryImpl @Inject constructor(
     @Dispatcher(AppDispatcher.IO) private val dispatcher: CoroutineDispatcher
 ) : FieldRepository {
 
+    /**
+     * Fetches the fields from the server.
+     */
     @WorkerThread
     override fun getFields(): Flow<FieldResult> = flow {
 
-        if (loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString().isEmpty()) {
-            val dto = RequestDto(
-                method = HttpMethods.POST,
+        val dto = RequestDto(
+                method = HttpMethods.GET,
                 resource = EndPoints.RESOURCE_URL_FIELDS
             )
-            val response = network.client().newCall(dto.getSignedRequest()).execute()
+        val response = network.client().newCall(dto.getSignedRequest()).execute()
 
-            when (response.code) {
-                HttpCodes.REQUEST_SUCCESS -> {
+        when (response.code) {
+            HttpCodes.REQUEST_SUCCESS -> {
 
-                    val result =
-                        network.gson().fromJson(response.body?.string(), ApiResponse::class.java)
+                val result =
+                    network.gson().fromJson(response.body?.string(), ApiResponse::class.java)
 
-                    if (result.ok == 1) {
-                        val list = dataToFieldsList(result.data)
-                        emit(FieldResult.SuccessFieldList(list))
-                    } else {
-                        val localResult = network.gson().fromJson(
-                            loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString(),
-                            ApiResponse::class.java
-                        )
-                        val list = dataToFieldsList(localResult.data)
-                        emit(FieldResult.SuccessFieldList(list))
-                    }
-                }
-
-                HttpCodes.REQUEST_NOT_FOUND, HttpCodes.REQUEST_INTERNAL_SERVER_ERROR -> {
-                    emit(FieldResult.Error)
-                }
-
-                else -> {
-                    emit(FieldResult.Error)
+                if (result.ok == 1) {
+                    val list = dataToFieldsList(result.data)
+                    emit(FieldResult.SuccessFieldList(list))
+                } else {
+                    val localResult = network.gson().fromJson(
+                        loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString(),
+                        ApiResponse::class.java
+                    )
+                    val list = dataToFieldsList(localResult.data)
+                    emit(FieldResult.SuccessFieldList(list))
                 }
             }
-        } else {
-            val localResult = network.gson().fromJson(
-                loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString(),
-                ApiResponse::class.java
-            )
-            val list = dataToFieldsList(localResult.data)
-            emit(FieldResult.SuccessFieldList(list))
-        }
 
+            HttpCodes.REQUEST_NOT_FOUND, HttpCodes.REQUEST_INTERNAL_SERVER_ERROR -> {
+                emit(FieldResult.Error)
+            }
+
+            else -> {
+                emit(FieldResult.Error)
+            }
+        }
     }.flowOn(dispatcher).catch {
         emit(FieldResult.Error)
     }
 
-    private fun loadDataFromLocalResource(@RawRes resource: Int): JSONObject {
+    /**
+     * Loads the data from a local resource.
+     */
+    fun loadDataFromLocalResource(@RawRes resource: Int): JSONObject {
         val rawJson = context.resources
             .openRawResource(resource)
             .bufferedReader()
@@ -93,7 +89,10 @@ class FieldRepositoryImpl @Inject constructor(
         return JSONObject(rawJson)
     }
 
-    private fun dataToFieldsList(data: Data): List<Field> {
+    /**
+     * Converts the data object to a list of fields.
+     */
+    fun dataToFieldsList(data: Data): List<Field> {
         val list = listOf(
             data.customerLastname,
             data.customerPhone,
@@ -116,7 +115,10 @@ class FieldRepositoryImpl @Inject constructor(
         return list
     }
 
-    private fun castValuesToList(values: Any?): List<String> {
+    /**
+     * Casts the values of a field to a list of strings.
+     */
+    fun castValuesToList(values: Any?): List<String> {
         return when (values) {
             is List<*> -> values.filterIsInstance<String>()
             is Map<*, *> -> values.values.map { it.toString() }
