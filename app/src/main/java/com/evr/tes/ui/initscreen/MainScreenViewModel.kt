@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for the MainScreen
+ */
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
     private val fieldsRepository: FieldRepository
@@ -27,6 +30,9 @@ class MainScreenViewModel @Inject constructor(
         loadFields()
     }
 
+    /**
+     * Load the fields from the repository
+     */
     private fun loadFields() = viewModelScope.launch {
         _fieldsState.value = FieldsState.Loading
         fieldsRepository.getFields().collect { fieldResult ->
@@ -51,15 +57,24 @@ class MainScreenViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Update the validity of a field
+     */
     fun updateValidField(index: Int, isValid: Boolean) {
         _validFields[index] = _validFields[index].copy(isValid = isValid)
     }
 
+    /**
+     * Check if all the form fields are valid
+     */
     fun isFormFieldsValid(): Boolean {
         val fieldsValid = _validFields.all { it.isValid }
         return fieldsValid
     }
 
+    /**
+     * Reset the state of the fields
+     */
     fun resetState() = viewModelScope.launch {
         _fieldsState.value = FieldsState.Nonce
     }
