@@ -37,7 +37,6 @@ class FieldRepositoryImplTest {
     @Mock
     private lateinit var resources: Resources
 
-
     @get:Rule
     val coroutinesRule = MainCoroutinesRule()
 
@@ -97,6 +96,48 @@ class FieldRepositoryImplTest {
 
         val result = repository.dataToFieldsList(data)
         assertEquals(12, result.size)
+    }
+
+    @Test
+    fun castValuesToListReturnsListOfStrings_whenValuesIsList() {
+        val values = listOf("value1", "value2", "value3")
+        val result = repository.castValuesToList(values)
+        assertEquals(listOf("value1", "value2", "value3"), result)
+    }
+
+    @Test
+    fun castValuesToListReturnsListOfStrings_whenValuesIsMap() {
+        val values = mapOf("key1" to "value1", "key2" to "value2")
+        val result = repository.castValuesToList(values)
+        assertEquals(listOf("value1", "value2"), result)
+    }
+
+    @Test
+    fun castValuesToList_returnsListOfStrings_whenValuesIsString() {
+        val values = "singleValue"
+        val result = repository.castValuesToList(values)
+        assertEquals(listOf("singleValue"), result)
+    }
+
+    @Test
+    fun castValuesToListReturnsListOfStringsWhenValuesIsNumber() {
+        val values = 123
+        val result = repository.castValuesToList(values)
+        assertEquals(listOf("123"), result)
+    }
+
+    @Test
+    fun castValuesToListReturnsListOfStringsWhenValuesIsBoolean() {
+        val values = true
+        val result = repository.castValuesToList(values)
+        assertEquals(listOf("true"), result)
+    }
+
+    @Test
+    fun castValuesToListReturnsEmptyListWhenValuesIsNull() {
+        val values = null
+        val result = repository.castValuesToList(values)
+        assertEquals(emptyList<String>(), result)
     }
 
     // Mocks
