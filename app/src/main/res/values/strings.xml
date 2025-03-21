@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="app_test">Enrique Test</string>
+    <string name="valid_field">Campos validos</string>
+    <string name="invalid_field">Campos invalidos</string>
+    <string name="error_field">Formato invalido</string>
+    <string name="field_name">%1$s %2$s</string>
+    <string name="field_button">VALIDAR</string>
+</resources>
