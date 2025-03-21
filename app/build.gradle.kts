@@ -77,4 +77,10 @@ dependencies {
     testImplementation(libs.coroutines)
     implementation(libs.coroutines.test)
     testImplementation(libs.coroutines.test)
+    testImplementation(libs.coroutines)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.androidx.arch.core)
 }
