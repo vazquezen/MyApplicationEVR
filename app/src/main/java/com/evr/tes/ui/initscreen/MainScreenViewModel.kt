@@ -80,6 +80,9 @@ class MainScreenViewModel @Inject constructor(
     }
 }
 
+/**
+ * Sealed class to represent the state of the fields
+ */
 sealed interface FieldsState {
     data object Nonce : FieldsState
     data object Loading : FieldsState
