@@ -81,7 +81,7 @@ class FieldRepositoryImpl @Inject constructor(
     /**
      * Loads the data from a local resource.
      */
-    private fun loadDataFromLocalResource(@RawRes resource: Int): JSONObject {
+    fun loadDataFromLocalResource(@RawRes resource: Int): JSONObject {
         val rawJson = context.resources
             .openRawResource(resource)
             .bufferedReader()
@@ -92,7 +92,7 @@ class FieldRepositoryImpl @Inject constructor(
     /**
      * Converts the data object to a list of fields.
      */
-    private fun dataToFieldsList(data: Data): List<Field> {
+    fun dataToFieldsList(data: Data): List<Field> {
         val list = listOf(
             data.customerLastname,
             data.customerPhone,
@@ -118,7 +118,7 @@ class FieldRepositoryImpl @Inject constructor(
     /**
      * Casts the values of a field to a list of strings.
      */
-    private fun castValuesToList(values: Any?): List<String> {
+    fun castValuesToList(values: Any?): List<String> {
         return when (values) {
             is List<*> -> values.filterIsInstance<String>()
             is Map<*, *> -> values.values.map { it.toString() }
