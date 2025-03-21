@@ -47,7 +47,7 @@ class MainScreenViewModel @Inject constructor(
                     fields.forEach{ _ ->
                         _validFields.add(FormField())
                     }
-                    _fieldsState.value = FieldsState.AppliesList(fields)
+                    _fieldsState.value = FieldsState.SuccessFieldsList(fields)
                 }
 
                 is FieldResult.Error -> {
@@ -87,5 +87,5 @@ sealed interface FieldsState {
     data object Nonce : FieldsState
     data object Loading : FieldsState
     data object Error : FieldsState
-    data class AppliesList(val fields: List<Field>) : FieldsState
+    data class SuccessFieldsList(val fields: List<Field>) : FieldsState
 }

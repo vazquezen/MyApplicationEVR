@@ -47,7 +47,7 @@ class MainScreenViewModelTest {
         assertEquals(FieldsState.Loading, viewModel.fieldsState.value)
         viewModel.loadFields()
         assertEquals(
-            FieldsState.AppliesList(listOf(createFieldsMock(), createFieldsMock())),
+            FieldsState.SuccessFieldsList(listOf(createFieldsMock(), createFieldsMock())),
             viewModel.fieldsState.value
         )
         verify(repository, atLeastOnce()).getFields()

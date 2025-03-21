@@ -75,7 +75,7 @@ private fun UIState(
             viewModel.resetState()
         }
 
-        is FieldsState.AppliesList -> {
+        is FieldsState.SuccessFieldsList -> {
             DynamicForm(list, viewModel)
             loading = false
         }
