@@ -49,25 +49,22 @@ class FieldRepositoryImpl @Inject constructor(
 
         when (response.code) {
             HttpCodes.REQUEST_SUCCESS -> {
-
-                val result =
-                    network.gson().fromJson(response.body?.string(), ApiResponse::class.java)
+                val result = network.gson().fromJson(response.body.toString(), ApiResponse::class.java)
 
                 if (result.ok == 1) {
                     val list = dataToFieldsList(result.data)
                     emit(FieldResult.SuccessFieldList(list))
                 } else {
-                    val localResult = network.gson().fromJson(
-                        loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString(),
-                        ApiResponse::class.java
-                    )
-                    val list = dataToFieldsList(localResult.data)
+                    val list = processResponse(
+                        loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString())
                     emit(FieldResult.SuccessFieldList(list))
                 }
             }
 
             HttpCodes.REQUEST_NOT_FOUND, HttpCodes.REQUEST_INTERNAL_SERVER_ERROR -> {
-                emit(FieldResult.Error)
+                val list = processResponse(
+                    loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString())
+                emit(FieldResult.SuccessFieldList(list))
             }
 
             else -> {
@@ -76,6 +73,11 @@ class FieldRepositoryImpl @Inject constructor(
         }
     }.flowOn(dispatcher).catch {
         emit(FieldResult.Error)
+    }
+
+    private fun processResponse(response: String) : List<Field> {
+        val result = network.gson().fromJson(response, ApiResponse::class.java)
+        return dataToFieldsList(result.data)
     }
 
     /**
