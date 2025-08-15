@@ -11,6 +11,7 @@ composeBom = "2025.03.00"
 
 gson = "2.11.0"
 
+recaptcha = "18.8.0-beta02"
 retrofit = "2.11.0"
 okhttp = "4.12.0"
 
@@ -45,6 +46,7 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-urlconnection = { group = "com.squareup.okhttp3", name = "okhttp-urlconnection", version.ref = "okhttp" }
+recaptcha = { module = "com.google.android.recaptcha:recaptcha", version.ref = "recaptcha" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 retrofit-mock = { group = "com.squareup.retrofit2", name = "retrofit-mock", version.ref = "retrofit" }

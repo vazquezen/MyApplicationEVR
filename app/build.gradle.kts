@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.recaptcha)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
