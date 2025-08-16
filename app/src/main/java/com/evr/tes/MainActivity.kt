@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.evr.tes.ui.captchascreen.CaptchaScreen
 import com.evr.tes.ui.initscreen.MainScreen
 import com.evr.tes.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +41,8 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     ) { innerPadding ->
-                        MainScreen(innerPadding)
+                        CaptchaScreen(innerPadding)
+                        //MainScreen(innerPadding)
                     }
                 }
             }
