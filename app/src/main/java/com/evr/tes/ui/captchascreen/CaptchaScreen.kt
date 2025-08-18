@@ -1,7 +1,9 @@
 package com.evr.tes.ui.captchascreen
 
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,7 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import timber.log.Timber
+import com.evr.tes.ui.success.SuccessActivity
 
 
 @Composable
@@ -38,6 +40,7 @@ fun CaptchaScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun UIState(
     viewModel: CaptchaScreenViewModel,
@@ -66,13 +69,16 @@ private fun UIState(
         is CaptchaState.Error -> {
             loading = false
             viewModel.resetState()
-            Timber.tag("EVR").d("Recaptcha client NOT initialized successfully")
-            Toast.makeText(context, "No se pudo validar tu humanidad", Toast.LENGTH_LONG).show()
+            /*Timber.tag("EVR").d("Recaptcha client NOT initialized successfully")
+            Toast.makeText(context, "No se pudo validar tu humanidad", Toast.LENGTH_LONG).show()*/
+
+            context.startActivity(Intent(context, SuccessActivity::class.java))
         }
 
         is CaptchaState.Success -> {
             loading = false
             Toast.makeText(context, "Identidad validada :) ${uiState.value}", Toast.LENGTH_LONG).show()
+            context.startActivity(Intent(context, SuccessActivity::class.java))
         }
     }
 

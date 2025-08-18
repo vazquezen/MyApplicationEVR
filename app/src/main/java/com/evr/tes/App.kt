@@ -2,6 +2,7 @@ package com.evr.tes
 
 import android.app.Application
 import android.content.Context
+import com.evr.tes.core_data.recaptcha.RecaptchaRepository
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -17,6 +18,7 @@ class App : Application() {
         super.onCreate()
         instance = this@App
         appContext = applicationContext
+        RecaptchaRepository.initializeClient(this)
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

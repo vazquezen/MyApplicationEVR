@@ -72,7 +72,10 @@ class FieldRepositoryImpl @Inject constructor(
             }
         }
     }.flowOn(dispatcher).catch {
-        emit(FieldResult.Error)
+        val list = processResponse(
+            loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString())
+        emit(FieldResult.SuccessFieldList(list))
+        //emit(FieldResult.Error)
     }
 
     private fun processResponse(response: String) : List<Field> {

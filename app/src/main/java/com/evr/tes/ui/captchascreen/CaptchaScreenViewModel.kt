@@ -70,7 +70,7 @@ class CaptchaScreenViewModel @Inject constructor() : ViewModel() {
                     Timber.tag(tag).d("Recaptcha token: $token")
 
                     if (token.isNullOrEmpty().not()) {
-                        _captchaState.value = CaptchaState.Success(token)
+                        _captchaState.value = CaptchaState.Success(token!!)
                     } else {
                         _captchaState.value = CaptchaState.Error("Token vacío")
                     }
