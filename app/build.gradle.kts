@@ -51,6 +51,8 @@ android {
 
 dependencies {
     implementation(libs.recaptcha)
+    implementation(libs.play.services.safetynet)
+    implementation(libs.friendly.captcha.android)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -61,7 +63,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.junit)
-    implementation(libs.play.services.safetynet)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

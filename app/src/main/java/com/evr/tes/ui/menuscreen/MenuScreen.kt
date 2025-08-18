@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.evr.tes.ui.captchascreen.FriendlyCaptchaActivity
 import com.evr.tes.ui.success.SuccessActivity
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -52,7 +53,7 @@ fun MenuScreen(
                     context.startActivity(
                         Intent(
                             context,
-                            SuccessActivity::class.java
+                            FriendlyCaptchaActivity::class.java
                         )
                     )
                 }

@@ -28,6 +28,7 @@ androidxArchCore = "2.2.0"
 
 timber = "5.0.1"
 playServicesSafetynet = "18.1.0"
+friendlyCaptcha = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -74,7 +75,10 @@ androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-com
 
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+
+#Captchas
 play-services-safetynet = { group = "com.google.android.gms", name = "play-services-safetynet", version.ref = "playServicesSafetynet" }
+friendly-captcha-android = { group = "com.friendlycaptcha.android", name = "friendly-captcha-android", version.ref = "friendlyCaptcha" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
