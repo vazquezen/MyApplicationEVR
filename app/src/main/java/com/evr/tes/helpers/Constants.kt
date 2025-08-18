@@ -1,7 +1,9 @@
 package com.evr.tes.helpers
 
 object Keys {
-    const val RECAPTCHA_API_SITE_KEY = "6LcyYacrAAAAABbe4ljbNKAl63JxLrX8UV0L_e3O" //"6LfndaYrAAAAAEbQz2_YaIEhuTuyJhcwr6K5o1C9"
-    const val HCAPTCHA_SECRET_KEY = "2a32b494-d624-4fd4-996c-4ec6f5423bf6"
+    const val RECAPTCHA_API_SITE_KEY = "6LcyYacrAAAAABbe4ljbNKAl63JxLrX8UV0L_e3O"
     const val FRIENDLY_CAPTCHA_SITEKEY = "FCMM15HLLKQ6LVOI"
+    const val HCAPTCHA_SECRET_KEY = "2a32b494-d624-4fd4-996c-4ec6f5423bf6"
+    const val GET_TEST_CAPTCHA_KEY = "96363f1593a179332b3888b5480427e7"
+    const val TENCENT_CLOUD_CAPTCHA_KEY = "qqhylRExLP6V7ArCyE05r3LxW"
 }

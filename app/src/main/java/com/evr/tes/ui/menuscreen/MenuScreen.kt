@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.evr.tes.ui.captchascreen.FriendlyCaptchaActivity
+import com.evr.tes.ui.captchascreen.GetTestCatpchaActivity
 import com.evr.tes.ui.captchascreen.GoogleReCaptchaActivity
 import com.evr.tes.ui.captchascreen.HCaptchaActivity
 import com.evr.tes.ui.success.SuccessActivity
@@ -85,7 +86,7 @@ fun MenuScreen(
                     context.startActivity(
                         Intent(
                             context,
-                            SuccessActivity::class.java
+                            GetTestCatpchaActivity::class.java
                         )
                     )
                 }
