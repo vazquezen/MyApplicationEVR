@@ -11,4 +11,5 @@
     <string name="success">Validation Success</string>
     <string name="title_activity_friendly_captcha">Friendly Captcha</string>
     <string name="title_activity_google_re_captcha">Google ReCaptcha</string>
+    <string name="title_activity_hcaptcha">HCaptcha</string>
 </resources>
