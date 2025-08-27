@@ -20,6 +20,9 @@
         android:theme="@style/Theme.AppCompat"
         tools:targetApi="31">
         <activity
+            android:name=".ui.captchascreen.TencentCloudCaptchaActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.captchascreen.GetTestCatpchaActivity"
             android:exported="false"
             android:label="@string/title_activity_hcaptcha"
