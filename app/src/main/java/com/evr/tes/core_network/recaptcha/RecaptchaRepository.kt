@@ -32,6 +32,7 @@ class RecaptchaRepository @Inject constructor(
             Timber.tag(TAG).d("Token length: ${token.length}")
             Timber.tag(TAG).d("Token preview: ${token.take(50)}...")
             Timber.tag(TAG).d("Expected action: $expectedAction")
+            Timber.tag(TAG).d("Device IP: ${getDeviceIpAddress()}")
             Timber.tag(TAG).d("Site key: ${Keys.RECAPTCHA_API_APP_KEY}")
             Timber.tag(TAG).d("Project ID: ${Keys.GOOGLE_CLOUD_PROJECT_ID}")
             Timber.tag(TAG).d("API Key: ${Keys.GOOGLE_CLOUD_API_KEY.take(20)}...")
@@ -41,6 +42,7 @@ class RecaptchaRepository @Inject constructor(
                 event = RecaptchaEvent(
                     token = token,
                     siteKey = Keys.RECAPTCHA_API_APP_KEY,
+                    userAgent = Keys.USER_AGENT,
                     userIpAddress = getDeviceIpAddress(),
                     expectedAction = expectedAction
                 )

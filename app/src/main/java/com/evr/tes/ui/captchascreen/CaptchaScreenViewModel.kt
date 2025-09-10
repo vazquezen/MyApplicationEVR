@@ -1,5 +1,6 @@
 package com.evr.tes.ui.captchascreen
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evr.tes.App
@@ -30,7 +31,6 @@ class CaptchaScreenViewModel @Inject constructor(
     val captchaState: StateFlow<CaptchaState> = _captchaState
 
     private val _token = MutableStateFlow("")
-    val token: StateFlow<String> = _token
 
     init {
         initializeRecaptchaClient()
@@ -55,8 +55,7 @@ class CaptchaScreenViewModel @Inject constructor(
             Timber.tag(tag).e("Error inicializando reCaptcha: ${e.errorCode.errorMessage}")
             Timber.tag(tag).e("RecaptchaException details: ${e.message}")
             Timber.tag(tag).e("Error code: ${e.errorCode}")
-            
-            // Si es "Key type invalid", es porque necesitamos keys reales de reCaptcha v3
+
             if (e.errorCode.errorMessage.contains("Key type invalid", ignoreCase = true)) {
                 Timber.tag(tag).w("Las keys de testing no funcionan con reCaptcha v3. Necesitas keys reales de Google Cloud Console.")
                 
@@ -70,7 +69,7 @@ class CaptchaScreenViewModel @Inject constructor(
         } catch(e: Exception) {
             val errorMessage = "Unexpected error during initialization: ${e.message}"
             _captchaState.value = CaptchaState.Error(message = errorMessage)
-            Timber.tag(tag).e("Unexpected error: ${e.message}", e)
+            Timber.tag(tag).e(e, "Unexpected error: ${e.message}")
         }
     }
 
@@ -108,6 +107,7 @@ class CaptchaScreenViewModel @Inject constructor(
         }
     }
     
+    @SuppressLint("DefaultLocale")
     private suspend fun verifyTokenWithGoogle(token: String, action: String) {
         try {
             Timber.tag(tag).d("Verifying token with Google servers...")
@@ -161,7 +161,7 @@ class CaptchaScreenViewModel @Inject constructor(
 
     private suspend fun simulateDemoSuccess() {
         Timber.tag(tag).i("DEMO MODE: Simulando verificación exitosa de reCaptcha v3")
-        kotlinx.coroutines.delay(1500) // Simular tiempo de procesamiento
+        kotlinx.coroutines.delay(3000)
         
         val demoToken = "demo_token_03AGdBq26_reCaptcha_v3_demo_simulation_${System.currentTimeMillis()}"
         val demoScore = 0.85f

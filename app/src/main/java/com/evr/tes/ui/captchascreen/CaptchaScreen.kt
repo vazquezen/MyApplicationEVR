@@ -74,7 +74,7 @@ private fun UIState(
         is CaptchaState.Error -> {
             val errorState = uiState.value as CaptchaState.Error
             Timber.tag("EVR").e("reCaptcha Error: ${errorState.message}")
-            Toast.makeText(context, "Error: ${errorState.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "🚨 Error: ${errorState.message}", Toast.LENGTH_LONG).show()
             viewModel.resetState()
         }
 

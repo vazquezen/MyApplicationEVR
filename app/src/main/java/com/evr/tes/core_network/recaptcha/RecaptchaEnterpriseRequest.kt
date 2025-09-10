@@ -13,8 +13,12 @@ data class RecaptchaEvent(
     val token: String = "",
     @SerializedName("siteKey")
     val siteKey: String = "",
+    @SerializedName("userAgent")
+    val userAgent: String = "",
     @SerializedName("userIpAddress")
     val userIpAddress: String = "",
+    @SerializedName("ja3")
+    val ja3: String = "JA3",
     @SerializedName("expectedAction")
     val expectedAction: String = ""
 )
