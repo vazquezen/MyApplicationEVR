@@ -1,5 +1,4 @@
 import org.gradle.kotlin.dsl.implementation
-import kotlin.collections.addAll
 
 plugins {
     alias(libs.plugins.android.application)
@@ -62,11 +61,6 @@ dependencies {
 
     // Captchas
     implementation(libs.recaptcha)
-    implementation(libs.play.services.safetynet)
-    implementation(libs.friendly.captcha.android)
-    implementation(libs.sdk)
-    implementation(libs.compose.sdk)
-    implementation(libs.sensebot)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

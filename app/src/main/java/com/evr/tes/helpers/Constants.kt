@@ -1,9 +1,11 @@
 package com.evr.tes.helpers
 
 object Keys {
-    const val RECAPTCHA_API_SITE_KEY = "6LcyYacrAAAAABbe4ljbNKAl63JxLrX8UV0L_e3O"
-    const val FRIENDLY_CAPTCHA_SITEKEY = "FCMM15HLLKQ6LVOI"
-    const val HCAPTCHA_SECRET_KEY = "2a32b494-d624-4fd4-996c-4ec6f5423bf6"
-    const val GET_TEST_CAPTCHA_KEY = "96363f1593a179332b3888b5480427e7"
-    const val TENCENT_CLOUD_CAPTCHA_KEY = "qqhylRExLP6V7ArCyE05r3LxW"
+
+    const val RECAPTCHA_API_APP_KEY = "6Le_JcQrAAAAADu5F_enIQOFErYMPA4p9XX8SZLU"
+    const val GOOGLE_CLOUD_PROJECT_ID = "testevr-1757532543056"
+    const val GOOGLE_CLOUD_API_KEY = "AIzaSyAOwMWl20bedHST0DkW4h4w_VH4hXMJChY"
+    
+    // DEMO MODE FLAG
+    const val DEMO_MODE = false
 }
