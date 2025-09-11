@@ -57,29 +57,15 @@ private fun UIState(
 
         is CaptchaState.Loading -> {
             Box(
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.TopCenter
             ) {
                 LinearProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
+                    modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
                     color = MaterialTheme.colorScheme.secondary,
                     trackColor = MaterialTheme.colorScheme.surfaceVariant,
                 )
             }
-        }
-
-        is CaptchaState.Error -> {
-            val errorState = uiState.value as CaptchaState.Error
-            Timber.tag("EVR").e("reCaptcha Error: ${errorState.message}")
-            Toast.makeText(
-                context,
-                "🚨 Error: ${errorState.message}",
-                Toast.LENGTH_LONG
-            ).show()
-            viewModel.resetState()
         }
 
         is CaptchaState.Success -> {
@@ -99,6 +85,17 @@ private fun UIState(
                 "⚠️ ${warningState.message}", 
                 Toast.LENGTH_LONG
             ).show()
+        }
+
+        is CaptchaState.Error -> {
+            val errorState = uiState.value as CaptchaState.Error
+            Timber.tag("EVR").e("reCaptcha Error: ${errorState.message}")
+            Toast.makeText(
+                context,
+                "🚨 Error: ${errorState.message}",
+                Toast.LENGTH_LONG
+            ).show()
+            viewModel.resetState()
         }
     }
 
