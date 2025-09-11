@@ -1,5 +1,7 @@
 package com.evr.tes.core_network.recaptcha
 
+import com.evr.tes.core_model.recaptcha.RecaptchaEnterpriseRequest
+import com.evr.tes.core_model.recaptcha.RecaptchaEnterpriseResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

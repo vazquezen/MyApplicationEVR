@@ -74,7 +74,11 @@ private fun UIState(
         is CaptchaState.Error -> {
             val errorState = uiState.value as CaptchaState.Error
             Timber.tag("EVR").e("reCaptcha Error: ${errorState.message}")
-            Toast.makeText(context, "🚨 Error: ${errorState.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                "🚨 Error: ${errorState.message}",
+                Toast.LENGTH_LONG
+            ).show()
             viewModel.resetState()
         }
 
@@ -82,7 +86,7 @@ private fun UIState(
             val successState = uiState.value as CaptchaState.Success
             Toast.makeText(
                 context, 
-                "✅ Identidad validada! Score: ${String.format("%.2f", successState.score)} (${successState.trustLevel})", 
+                "✅ Identidad validada! Score: ${String.format("%.2f", successState.score)} - (${successState.trustLevel})",
                 Toast.LENGTH_LONG
             ).show()
             context.startActivity(Intent(context, SuccessActivity::class.java))
@@ -105,7 +109,7 @@ private fun UIState(
     ) {
         Button(
             onClick = { viewModel.getToken() },
-            enabled = !isLoading
+            enabled = isLoading.not()
         ) {
             Text(text = if (isLoading) "Verificando..." else "Verificar con Google reCaptcha")
         }

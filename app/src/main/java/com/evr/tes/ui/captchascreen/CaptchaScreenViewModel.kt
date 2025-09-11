@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evr.tes.App
-import com.evr.tes.core_network.recaptcha.RecaptchaRepository
-import com.evr.tes.core_network.recaptcha.RecaptchaResult
-import com.evr.tes.core_network.recaptcha.TrustLevel
+import com.evr.tes.core_data.recaptcha.RecaptchaRepository
+import com.evr.tes.core_data.recaptcha.RecaptchaResult
+import com.evr.tes.core_data.recaptcha.TrustLevel
 import com.evr.tes.helpers.Keys
 import com.google.android.recaptcha.Recaptcha
 import com.google.android.recaptcha.RecaptchaAction

@@ -75,7 +75,6 @@ class FieldRepositoryImpl @Inject constructor(
         val list = processResponse(
             loadDataFromLocalResource(R.raw.getregistrationfieldsresponse).toString())
         emit(FieldResult.SuccessFieldList(list))
-        //emit(FieldResult.Error)
     }
 
     private fun processResponse(response: String) : List<Field> {
@@ -104,7 +103,7 @@ class FieldRepositoryImpl @Inject constructor(
             data.customerMonthlyIncome,
             data.bankIban,
             data.language,
-            data.customerPersoncode,
+            data.customerPersonCode,
             data.customerEmail,
             data.customerFirstname,
             data.customerGender,

@@ -154,7 +154,7 @@ fun FieldText(
         label = { Text(context.getString(R.string.field_name, field.type, field.order.toString())) },
         isError = !isValid,
         singleLine = true,
-        maxLines = field.maxlength!!,
+        maxLines = field.maxLength!!,
         supportingText = {
 
             if (!isValid) {

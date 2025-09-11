@@ -1,4 +1,4 @@
-package com.evr.tes.core_network.recaptcha
+package com.evr.tes.core_model.recaptcha
 
 import com.google.gson.annotations.SerializedName
 

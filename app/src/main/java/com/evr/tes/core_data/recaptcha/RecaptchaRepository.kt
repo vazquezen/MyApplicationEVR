@@ -1,10 +1,17 @@
-package com.evr.tes.core_network.recaptcha
+package com.evr.tes.core_data.recaptcha
 
+import com.evr.tes.core_model.recaptcha.RecaptchaEnterpriseRequest
+import com.evr.tes.core_model.recaptcha.RecaptchaEnterpriseResponse
+import com.evr.tes.core_model.recaptcha.RecaptchaEvent
+import com.evr.tes.core_network.recaptcha.RecaptchaService
 import com.evr.tes.helpers.Keys
 import com.google.gson.Gson
 import timber.log.Timber
+import java.net.Inet4Address
+import java.net.NetworkInterface
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.collections.iterator
 
 
 @Singleton
@@ -122,14 +129,14 @@ class RecaptchaRepository @Inject constructor(
     }
 
     fun getDeviceIpAddress(): String {
-        val interfaces = java.net.NetworkInterface.getNetworkInterfaces()
+        val interfaces = NetworkInterface.getNetworkInterfaces()
 
         for (networkInterface in interfaces) {
             val addresses = networkInterface.inetAddresses
 
             for (address in addresses) {
 
-                if (!address.isLoopbackAddress && address is java.net.Inet4Address) {
+                if (!address.isLoopbackAddress && address is Inet4Address) {
                     return address.hostAddress
                 }
             }

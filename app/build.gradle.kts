@@ -1,9 +1,11 @@
 import org.gradle.kotlin.dsl.implementation
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.parcelize)
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
 }
@@ -11,6 +13,9 @@ plugins {
 android {
     namespace = "com.evr.tes"
     compileSdk = 35
+
+    val properties = Properties()
+    properties.load(project.rootProject.file("local.properties").inputStream())
 
     defaultConfig {
         applicationId = "com.evr.tes"
@@ -37,6 +42,10 @@ android {
             isMinifyEnabled = false
             enableUnitTestCoverage = true
             enableAndroidTestCoverage = true
+            buildConfigField("String", "RECAPTCHA_BASE_URL", "\"${properties.getProperty("prod.base.uri")}\"")
+            buildConfigField("String", "RECAPTCHA_API_KEY", "\"${properties.getProperty("recaptcha.api.key")}\"")
+            buildConfigField("String", "CLOUD_PROJECT_ID", "\"${properties.getProperty("cloude.project.id")}\"")
+            buildConfigField("String", "CLOUD_API_KEY", "\"${properties.getProperty("cloude.api.key")}\"")
         }
     }
     compileOptions {
