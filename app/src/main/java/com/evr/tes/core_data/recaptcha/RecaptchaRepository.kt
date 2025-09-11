@@ -40,6 +40,7 @@ class RecaptchaRepository @Inject constructor(
             Timber.tag(TAG).d("Token preview: ${token.take(50)}...")
             Timber.tag(TAG).d("Expected action: $expectedAction")
             Timber.tag(TAG).d("Device IP: ${getDeviceIpAddress()}")
+            Timber.tag(TAG).d("User Agent: ${Keys.USER_AGENT}")
             Timber.tag(TAG).d("Site key: ${Keys.RECAPTCHA_API_APP_KEY}")
             Timber.tag(TAG).d("Project ID: ${Keys.GOOGLE_CLOUD_PROJECT_ID}")
             Timber.tag(TAG).d("API Key: ${Keys.GOOGLE_CLOUD_API_KEY.take(20)}...")
@@ -95,7 +96,7 @@ class RecaptchaRepository @Inject constructor(
         
         // Check if token is valid
         if (!response.tokenProperties.valid) {
-            val errorMessage = response.tokenProperties.invalidReason ?: "Token invalid"
+            val errorMessage = response.tokenProperties.invalidReason
             Timber.tag(TAG).w("reCAPTCHA Enterprise token invalid: $errorMessage")
             return RecaptchaResult.Error("Token validation failed: $errorMessage")
         }
@@ -128,6 +129,7 @@ class RecaptchaRepository @Inject constructor(
         }
     }
 
+    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     fun getDeviceIpAddress(): String {
         val interfaces = NetworkInterface.getNetworkInterfaces()
 

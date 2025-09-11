@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -79,47 +80,49 @@ class SuccessActivity : ComponentActivity() {
 
 @Composable
 fun SuccessPage(paddingValues: PaddingValues, modifier: Modifier = Modifier, onTryAgain: () -> Unit) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
+    Box(Modifier.padding(paddingValues)) {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
         ) {
-            Icon(
-                imageVector = Icons.Default.CheckCircle,
-                contentDescription = "Success",
-                tint = Color(0xFF3DDC84),
-                modifier = Modifier.size(24.dp)
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Default.CheckCircle,
+                    contentDescription = "Success",
+                    tint = Color(0xFF3DDC84),
+                    modifier = Modifier.size(24.dp)
+                )
+
+                Text(
+                    text = "Success",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 4.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Success",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 4.dp)
+                text = "The CAPTCHA challenge was accepted.",
+                fontSize = 12.sp,
+                lineHeight = 24.sp,
+                modifier = Modifier.fillMaxWidth()
             )
-        }
 
-        Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Text(
-            text = "The CAPTCHA challenge was accepted.",
-            fontSize = 12.sp,
-            lineHeight = 24.sp,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = { onTryAgain() },
-            shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Click to Main Screen")
+            Button(
+                onClick = { onTryAgain() },
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Click to Main Screen")
+            }
         }
     }
 }
